@@ -1,6 +1,10 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 define(
-    'WPDI_DATABASE_FILE',
-    WPDI_PATH . 'database/database.sql'
+	'DMNA_DATABASE_FILE',
+	DMNA_PLUGIN_DIR . 'database/database.sql'
 );

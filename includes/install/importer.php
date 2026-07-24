@@ -1,29 +1,71 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+
+/**
+ * Imports initial meditation data.
+ *
+ * @return void
+ */
 function wpdi_import_database() {
 
-    global $wpdb;
+	global $wpdb;
+
+	$table_name = $wpdb->prefix . 'DMNAPL_meditations_pl';
 
 
-    if (!file_exists(WPDI_DATABASE_FILE)) {
-        return;
-    }
+	// Nie importuj ponownie danych.
+	$count = (int) $wpdb->get_var(
+		"SELECT COUNT(*) FROM {$table_name}"
+	);
+
+	if ( $count > 0 ) {
+		return;
+	}
 
 
-    $sql = file_get_contents(WPDI_DATABASE_FILE);
+	if ( ! defined( 'DMNA_DATABASE_FILE' ) ) {
+		return;
+	}
 
 
-    $queries = explode(";\n", $sql);
+	if ( ! file_exists( DMNA_DATABASE_FILE ) ) {
+		return;
+	}
 
 
-    foreach ($queries as $query) {
+	$sql = file_get_contents( DMNA_DATABASE_FILE );
 
-        $query = trim($query);
 
-        if ($query) {
-            $wpdb->query($query);
-        }
+	if ( false === $sql ) {
+		return;
+	}
 
-    }
 
+	$sql = str_replace(
+		'{table}',
+		$table_name,
+		$sql
+	);
+
+
+	$queries = preg_split(
+		'/;\s*(?:\r?\n|$)/',
+		$sql
+	);
+
+
+	foreach ( $queries as $query ) {
+
+		$query = trim( $query );
+
+		if ( empty( $query ) ) {
+			continue;
+		}
+
+		$wpdb->query( $query );
+	}
 }

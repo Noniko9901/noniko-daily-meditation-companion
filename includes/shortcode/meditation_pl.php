@@ -7,7 +7,7 @@ function dm_shortcode()
 {
     global $wpdb;
 
-    $table = 'meditations_pl';
+    $table = $wpdb->prefix . 'DMNAPL_meditations_pl';
     $date  = current_time('m-d');
 
     $row = $wpdb->get_row(
