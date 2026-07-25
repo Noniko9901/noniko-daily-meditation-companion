@@ -1,10 +1,18 @@
 <?php
-/*
-Plugin Name: Daily Meditation NA - Polish
-Description: Wyświetla codzienną medytację z bazy SQL.
-Version: 1.0.2
-Author: Noniko99
-*/
+/**
+ * Plugin Name: Daily Meditation NA (Polish)
+ * Plugin URI: https://github.com/noniko99/DailyMeditationNA-Polish-wp-plugin
+ * Description: Displays the Daily Meditation from Narcotics Anonymous in Polish.
+ * Version: 1.0.3
+ * Requires at least: 6.0
+ * Requires PHP: 7.4
+ * Author: Noniko99
+ * Author URI: https://github.com/noniko99
+ * License: GPL v2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: daily-meditation-na-polish
+ */
+
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -13,8 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Plugin constants.
  */
-define( 'DMNA_VERSION', '1.0.2' );
-define( 'DMNA_DB_VERSION', '1.0.1' );
+define( 'DMNA_VERSION', '1.0.3' );
+define( 'DMNA_DB_VERSION', '1.0.3' );
 
 define( 'DMNA_PLUGIN_FILE', __FILE__ );
 define( 'DMNA_PLUGIN_DIR', plugin_dir_path( DMNA_PLUGIN_FILE ) );
