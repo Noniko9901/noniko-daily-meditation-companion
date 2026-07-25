@@ -3,7 +3,7 @@
 Wtyczka WordPress wyświetlająca codzienną medytację w języku polskim na podstawie danych zapisanych w bazie danych.
 
 ![WordPress](https://img.shields.io/badge/WordPress-Plugin-blue)
-![Version](https://img.shields.io/badge/version-1.0.2-2-green)
+![Version](https://img.shields.io/badge/version-1.0.3-green)
 
 ---
 
