@@ -10,7 +10,7 @@ Wtyczka WordPress wyświetlająca codzienną medytację w języku polskim na pod
 ## Informacje
 
 **Nazwa:** Daily Meditation NA - Polish  
-**Wersja:** 1.0.2-2  
+**Wersja:** 1.0.3  
 
 Wtyczka została stworzona do automatycznego wyświetlania codziennej medytacji.
 
