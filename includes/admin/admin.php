@@ -2,21 +2,23 @@
 if (!defined('ABSPATH')) {
     exit;
 }
+
 function dm_admin_menu() {
 
     add_menu_page(
-        'Daily Meditation',      // Tytuł strony
-        'Daily Meditation',      // Nazwa w menu
-        'manage_options',        // Uprawnienia
-        'daily-meditation',      // Slug
-        'dm_dashboard_page',     // Funkcja wyświetlająca stronę
-        'dashicons-book-alt',    // Ikona
-        30                       // Pozycja
+        'Daily Meditation',
+        'Daily Meditation',
+        'manage_options',
+        'daily-meditation',
+        'dm_dashboard_page',
+        'dashicons-book-alt',
+        30
     );
 
 }
 
 add_action('admin_menu', 'dm_admin_menu');
+
 
 function dm_dashboard_page() {
     ?>
@@ -24,9 +26,13 @@ function dm_dashboard_page() {
 
         <h1>Daily Meditation NA - Polish</h1>
 
-         <h1>Informacje</h1>
+        <h1>Informacje</h1>
 
-        <p>Ta wtyczka wyświetla codzienną medytację z bazy danych.</p>
+        <p>
+            Ta wtyczka wyświetla codzienną medytację
+            z programu Narcotics Anonymous w języku polskim
+            oraz Modlitwę o Pogodę Ducha.
+        </p>
 
         <hr><br>
 
@@ -38,7 +44,8 @@ function dm_dashboard_page() {
             <li>Wstaw shortcode na dowolnej stronie lub we wpisie.</li>
         </ol>
 
-        <h2>Shortcode</h2>
+
+        <h2>Shortcode - medytacja</h2>
 
         <p>Użyj poniższego shortcode:</p>
 
@@ -46,12 +53,29 @@ function dm_dashboard_page() {
             type="text"
             class="regular-text code"
             readonly
-            value="[daily_meditation_pl]"
+            value="[DMNAPL_meditations_pl]"
             onclick="this.select();">
 
         <p>lub</p>
 
-        <pre><code>[daily_meditation_pl]</code></pre>
+        <pre><code>[DMNAPL_meditations_pl]</code></pre>
+
+
+        <h2>Shortcode - Modlitwa o Pogodę Ducha</h2>
+
+        <p>Użyj poniższego shortcode:</p>
+
+        <input
+            type="text"
+            class="regular-text code"
+            readonly
+            value="[DMNAPL_prayer_pl]"
+            onclick="this.select();">
+
+        <p>lub</p>
+
+        <pre><code>[DMNAPL_prayer_pl]</code></pre>
+
 
         <hr>
 
@@ -60,7 +84,12 @@ function dm_dashboard_page() {
         <p>
             Wtyczka automatycznie wyświetla medytację odpowiadającą
             bieżącej dacie. Dane pobierane są z tabeli
-            <code>meditations_pl</code>.
+            <code>DMNAPL_meditations_pl</code>.
+        </p>
+
+        <p>
+            Dodatkowo dostępna jest Modlitwa o Pogodę Ducha,
+            którą można wyświetlić na stronie za pomocą osobnego shortcode.
         </p>
 
         <hr>
@@ -76,4 +105,3 @@ function dm_dashboard_page() {
     </div>
     <?php
 }
-

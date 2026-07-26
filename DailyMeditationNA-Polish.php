@@ -3,7 +3,7 @@
  * Plugin Name: Daily Meditation NA (Polish)
  * Plugin URI: https://github.com/noniko99/DailyMeditationNA-Polish-wp-plugin
  * Description: Displays the Daily Meditation from Narcotics Anonymous in Polish.
- * Version: 1.0.3
+ * Version: 1.0.4
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Author: Noniko99
@@ -21,8 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Plugin constants.
  */
-define( 'DMNA_VERSION', '1.0.3' );
-define( 'DMNA_DB_VERSION', '1.0.3' );
+define( 'DMNA_VERSION', '1.0.4' );
+define( 'DMNA_DB_VERSION', '1.0.4' );
 
 define( 'DMNA_PLUGIN_FILE', __FILE__ );
 define( 'DMNA_PLUGIN_DIR', plugin_dir_path( DMNA_PLUGIN_FILE ) );
@@ -32,12 +32,15 @@ define( 'DMNA_PLUGIN_BASENAME', plugin_basename( DMNA_PLUGIN_FILE ) );
 /**
  * Plugin files.
  */
-require_once DMNA_PLUGIN_DIR . 'database/schema.php';
+require_once DMNA_PLUGIN_DIR . 'includes/install/update.php';
+require_once DMNA_PLUGIN_DIR . 'includes/install/schema.php';
 require_once DMNA_PLUGIN_DIR . 'includes/install/config.php';
 require_once DMNA_PLUGIN_DIR . 'includes/install/importer.php';
+require_once DMNA_PLUGIN_DIR . 'includes/install/db-updater.php';
 require_once DMNA_PLUGIN_DIR . 'includes/shortcode/meditation_pl.php';
+require_once DMNA_PLUGIN_DIR . 'includes/shortcode/prayer_pl.php';
 require_once DMNA_PLUGIN_DIR . 'includes/admin/admin.php';
-require_once DMNA_PLUGIN_DIR . 'includes/install/update.php';
+
 
 /**
  * Runs on plugin activation.
