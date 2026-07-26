@@ -53,12 +53,12 @@ function dm_dashboard_page() {
             type="text"
             class="regular-text code"
             readonly
-            value="[DMNAPL_meditations_pl]"
+            value="[dmnapl_meditations_pl]"
             onclick="this.select();">
 
         <p>lub</p>
 
-        <pre><code>[DMNAPL_meditations_pl]</code></pre>
+        <pre><code>[dmnapl_meditations_pl]</code></pre>
 
 
         <h2>Shortcode - Modlitwa o Pogodę Ducha</h2>
@@ -69,12 +69,12 @@ function dm_dashboard_page() {
             type="text"
             class="regular-text code"
             readonly
-            value="[DMNAPL_prayer_pl]"
+            value="[dmnapl_prayer_pl]"
             onclick="this.select();">
 
         <p>lub</p>
 
-        <pre><code>[DMNAPL_prayer_pl]</code></pre>
+        <pre><code>[dmnapl_prayer_pl]</code></pre>
 
 
         <hr>

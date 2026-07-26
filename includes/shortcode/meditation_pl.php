@@ -78,4 +78,4 @@ function dm_shortcode()
     return ob_get_clean();
 }
 
-add_shortcode('DMNAPL_meditations_pl', 'dm_shortcode');
+add_shortcode('dmnapl_meditations_pl', 'dm_shortcode');

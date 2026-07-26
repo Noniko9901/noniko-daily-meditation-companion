@@ -62,6 +62,8 @@ function dmna_prayer_shortcode()
 }
 
 add_shortcode(
-    'DMNAPL_prayer_pl',
+    'dmnapl_prayer_pl',
     'dmna_prayer_shortcode'
 );
+
+

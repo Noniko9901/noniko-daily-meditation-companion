@@ -1,16 +1,15 @@
 <?php
 /**
  * Plugin Name: Daily Meditation NA (Polish)
- * Plugin URI: https://github.com/noniko99/DailyMeditationNA-Polish-wp-plugin
+ * Plugin URI: 
  * Description: Displays the Daily Meditation from Narcotics Anonymous in Polish.
- * Version: 1.0.4
+ * Version: 1.0.5
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Author: Noniko99
  * Author URI: https://github.com/noniko99
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: daily-meditation-na-polish
  */
 
 
@@ -21,8 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Plugin constants.
  */
-define( 'DMNA_VERSION', '1.0.4' );
-define( 'DMNA_DB_VERSION', '1.0.4' );
+define( 'DMNA_VERSION', '1.0.5' );
+define( 'DMNA_DB_VERSION', '1.0.5' );
 
 define( 'DMNA_PLUGIN_FILE', __FILE__ );
 define( 'DMNA_PLUGIN_DIR', plugin_dir_path( DMNA_PLUGIN_FILE ) );
@@ -32,7 +31,6 @@ define( 'DMNA_PLUGIN_BASENAME', plugin_basename( DMNA_PLUGIN_FILE ) );
 /**
  * Plugin files.
  */
-require_once DMNA_PLUGIN_DIR . 'includes/install/update.php';
 require_once DMNA_PLUGIN_DIR . 'includes/install/schema.php';
 require_once DMNA_PLUGIN_DIR . 'includes/install/config.php';
 require_once DMNA_PLUGIN_DIR . 'includes/install/importer.php';
@@ -45,7 +43,7 @@ require_once DMNA_PLUGIN_DIR . 'includes/admin/admin.php';
 /**
  * Runs on plugin activation.
  */
-function wpdi_activate_plugin() {
+function dmna_activate_plugin() {
 
     // Najpierw tworzymy strukturę tabeli
     if ( function_exists( 'dmna_create_database_table' ) ) {
@@ -72,7 +70,7 @@ register_activation_hook(
 /**
  * Enqueue frontend styles.
  */
-function wpdi_enqueue_styles() {
+function dmna_enqueue_styles() {
 
 	wp_enqueue_style(
 		'daily-meditation-style',
@@ -87,7 +85,3 @@ add_action(
 	'wpdi_enqueue_styles'
 );
 
-/**
- * GitHub JSON updater.
- */
-new DM_JSON_Updater( DMNA_PLUGIN_FILE );
