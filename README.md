@@ -3,14 +3,14 @@
 Wtyczka WordPress wyświetlająca codzienną medytację w języku polskim na podstawie danych zapisanych w bazie danych.
 
 ![WordPress](https://img.shields.io/badge/WordPress-Plugin-blue)
-![Version](https://img.shields.io/badge/version-1.0.5-green)
+![Version](https://img.shields.io/badge/version-1.0.6-green)
 
 ---
 
 ## Informacje
 
 **Nazwa:** Noniko Daily Meditation Companion                                                                                                                                  
-**Wersja:** 1.0.5  
+**Wersja:** 1.0.6  
 
 Wtyczka została stworzona do automatycznego wyświetlania codziennej medytacji.
 
