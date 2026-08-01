@@ -28,6 +28,6 @@ Po aktywacji:
 ✅ Import danych SQL podczas aktywacji  
 ✅ Prosty shortcode WordPress  
 ✅ Panel informacji w administracji WordPress   
-~~✅ System aktualizacji z GitHub ~~
+~~✅System aktualizacji z GitHub~~
 ---
 
