@@ -27,8 +27,7 @@ Po aktywacji:
 ✅ Automatyczne tworzenie tabeli w bazie danych  
 ✅ Import danych SQL podczas aktywacji  
 ✅ Prosty shortcode WordPress  
-✅ Panel informacji w administracji WordPress  
-✅ System aktualizacji z GitHub  
-
+✅ Panel informacji w administracji WordPress   
+~~✅ System aktualizacji z GitHub ~~
 ---
 
