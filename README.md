@@ -1,4 +1,4 @@
-# Noniko Daily Meditation for Narcotics Anonymous (WordPress plugin).
+# Noniko Daily Meditation Companion (WordPress plugin).
 
 Wtyczka WordPress wyświetlająca codzienną medytację w języku polskim na podstawie danych zapisanych w bazie danych.
 
@@ -9,7 +9,7 @@ Wtyczka WordPress wyświetlająca codzienną medytację w języku polskim na pod
 
 ## Informacje
 
-**Nazwa:** Noniko Daily Meditation for Narcotics Anonymous 
+**Nazwa:** Noniko Daily Meditation Companion                                                                                                                                  
 **Wersja:** 1.0.5  
 
 Wtyczka została stworzona do automatycznego wyświetlania codziennej medytacji.
