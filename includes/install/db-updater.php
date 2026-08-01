@@ -27,8 +27,8 @@ function dmna_update_database() {
 	// Aktualizacja struktury.
 	dmna_create_database_table();
 
-	// Aktualizacja danych.
-	wpdi_update_database_data();
+    // Aktualizacja danych.
+     wpdi_import_database();;
 
 	update_option(
 		'dmna_db_version',

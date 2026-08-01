@@ -1,12 +1,13 @@
 <?php
 /**
- * Plugin Name: Daily Meditation NA (Polish)
+ * Plugin Name: Noniko Daily Meditation Companion
+ * Text Domain: noniko-daily-meditation-companion
  * Plugin URI: 
- * Description: Displays the Daily Meditation from Narcotics Anonymous in Polish.
- * Version: 1.0.5
+ * Description: Displays daily meditation content in Polish.
+ * Version: 1.0.6
  * Requires at least: 6.0
  * Requires PHP: 7.4
- * Author: Noniko99
+ * Author: Noniko9901
  * Author URI: https://github.com/noniko99
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -20,8 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Plugin constants.
  */
-define( 'DMNA_VERSION', '1.0.5' );
-define( 'DMNA_DB_VERSION', '1.0.5' );
+define( 'DMNA_VERSION', '1.0.6' );
+define( 'DMNA_DB_VERSION', '1.0.6' );
 
 define( 'DMNA_PLUGIN_FILE', __FILE__ );
 define( 'DMNA_PLUGIN_DIR', plugin_dir_path( DMNA_PLUGIN_FILE ) );
@@ -63,10 +64,9 @@ function dmna_activate_plugin() {
 }
 
 register_activation_hook(
-	DMNA_PLUGIN_FILE,
-	'wpdi_activate_plugin'
+    DMNA_PLUGIN_FILE,
+    'dmna_activate_plugin'
 );
-
 /**
  * Enqueue frontend styles.
  */
@@ -81,7 +81,6 @@ function dmna_enqueue_styles() {
 }
 
 add_action(
-	'wp_enqueue_scripts',
-	'wpdi_enqueue_styles'
+    'wp_enqueue_scripts',
+    'dmna_enqueue_styles'
 );
-

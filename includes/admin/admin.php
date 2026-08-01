@@ -104,4 +104,5 @@ function dm_dashboard_page() {
 
     </div>
     <?php
+     require DMNA_PLUGIN_DIR . 'includes/admin/footer.php';
 }

@@ -1,4 +1,4 @@
-=== Daily Meditation NA (Polish) ===
+=== Noniko Daily Meditation Companion ===
 Contributors: noniko99
 Requires at least: 6.0
 Tested up to: 7.0
@@ -11,7 +11,7 @@ Daily Meditations from Narcotics Anonymous in Polish.
 
 == Description ==
 
-Daily Meditation NA (Polish) displays the daily meditation for Narcotics Anonymous members in Polish using a shortcode.
+Noniko Daily Meditation Companion displays the daily meditation for Narcotics Anonymous members in Polish using a shortcode.
 
 == Installation ==
 
@@ -27,5 +27,5 @@ Use the shortcode.
 
 == Changelog ==
 
-= 1.0.5 =
+= 1.0.6 =
 * Initial public release.

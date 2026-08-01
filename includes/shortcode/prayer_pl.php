@@ -16,7 +16,7 @@ function dmna_prayer_shortcode()
         <div class="med-title">
 
             <h1>
-                <?php echo esc_html__('Modlitwa o Pogodę Ducha', 'daily-meditation-na-polish'); ?>
+                <?php echo esc_html__('Modlitwa o Pogodę Ducha', 'noniko-daily-meditation-companion'); ?>
             </h1>
 
         </div>
@@ -32,31 +32,11 @@ function dmna_prayer_shortcode()
 
         </div>
 
-        <div class="dm-footer">
-
-            <p>
-                Daily Meditation NA – Polish
-            </p>
-
-            <p>
-
-                <a href="https://github.com/noniko99/DailyMeditationNA-Polish-wp-plugin" target="_blank" rel="noopener">
-                    GitHub
-                </a>
-
-                •
-
-                <a href="mailto:noniko9901@gmail.com">
-                    Kontakt
-                </a>
-
-            </p>
-
-        </div>
 
     </div>
 
     <?php
+     require DMNA_PLUGIN_DIR . 'includes/admin/footer.php';
 
     return ob_get_clean();
 }
