@@ -3,11 +3,22 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-function dm_shortcode()
+function meditations_pl_shortcode()
 {
     global $wpdb;
 
-    $table = $wpdb->prefix . 'DMNAPL_meditations_pl';
+    $table = $wpdb->prefix . 'dmnapl_language';
+
+    $lang = $wpdb->get_row(
+	$wpdb->prepare(
+		"SELECT * FROM {$table} WHERE jezyk = %s",
+		'pl'
+	)
+);
+    
+
+
+    $table = $wpdb->prefix . 'dmnapl_meditations_pl';
     $date  = current_time('m-d');
 
     $row = $wpdb->get_row(
@@ -18,7 +29,7 @@ function dm_shortcode()
     );
 
     if (!$row) {
-        return '<div class="dm-error">Brak medytacji na dziś.</div>';
+        return '<div class="dm-error">' . esc_html( $lang->error ) . '</div>';
     }
 
     ob_start();
@@ -29,7 +40,7 @@ function dm_shortcode()
     <div class="daily-meditation">
 
         <div class="med-date">
-            <?php echo esc_html(date_i18n('j F Y', current_time('timestamp'))); ?>
+           <?php echo esc_html(date_i18n('d.m.Y', current_time('timestamp'))); ?>
         </div>
 
         <div class="med-title">
@@ -46,9 +57,13 @@ function dm_shortcode()
 
         <div class="today-note">
 
-            <h3>Właśnie dzisiaj</h3>
+            
 
-            <?php echo wpautop(wp_kses_post($row->today_note)); ?>
+            <?php 
+            
+            echo '<h3>' . esc_html( $lang->just_for_day ) . '</h3>';
+            
+            echo wpautop(wp_kses_post($row->today_note)); ?>
 
         </div>
 
@@ -61,4 +76,4 @@ function dm_shortcode()
     return ob_get_clean();
 }
 
-add_shortcode('dmnapl_meditations_pl', 'dm_shortcode');
+add_shortcode('meditations_pl', 'meditations_pl_shortcode');

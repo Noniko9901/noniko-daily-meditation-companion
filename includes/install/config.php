@@ -5,6 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define(
-	'DMNA_DATABASE_FILE',
-	DMNA_PLUGIN_DIR . 'database/database.sql'
+	'DMNA_DATABASE_DIR',
+	DMNA_PLUGIN_DIR . 'database/'
 );

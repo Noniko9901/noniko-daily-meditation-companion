@@ -4,11 +4,11 @@
  * Text Domain: noniko-daily-meditation-companion
  * Plugin URI: 
  * Description: Displays daily meditation content in Polish.
- * Version: 1.0.6
+ * Version: 1.0.7
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Author: Noniko9901
- * Author URI: https://github.com/noniko99
+ * Author URI: https://github.com/noniko9901
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -21,8 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Plugin constants.
  */
-define( 'DMNA_VERSION', '1.0.6' );
-define( 'DMNA_DB_VERSION', '1.0.6' );
+define( 'DMNA_VERSION', '1.0.7' );
+define( 'DMNA_DB_VERSION', '1.0.7' );
 
 define( 'DMNA_PLUGIN_FILE', __FILE__ );
 define( 'DMNA_PLUGIN_DIR', plugin_dir_path( DMNA_PLUGIN_FILE ) );
@@ -36,8 +36,10 @@ require_once DMNA_PLUGIN_DIR . 'includes/install/schema.php';
 require_once DMNA_PLUGIN_DIR . 'includes/install/config.php';
 require_once DMNA_PLUGIN_DIR . 'includes/install/importer.php';
 require_once DMNA_PLUGIN_DIR . 'includes/install/db-updater.php';
+
+
 require_once DMNA_PLUGIN_DIR . 'includes/shortcode/meditation_pl.php';
-require_once DMNA_PLUGIN_DIR . 'includes/shortcode/prayer_pl.php';
+
 require_once DMNA_PLUGIN_DIR . 'includes/admin/admin.php';
 
 

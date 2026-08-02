@@ -5,122 +5,111 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
-/**
- * Imports initial meditation data.
- *
- * @return void
- */
-function wpdi_import_database() {
+if ( ! function_exists( 'wpdi_get_database_files' ) ) {
 
-	global $wpdb;
+	function wpdi_get_database_files() {
 
-	$table_name = $wpdb->prefix . 'DMNAPL_meditations_pl';
-
-
-	// Nie importuj ponownie danych.
-	$count = (int) $wpdb->get_var(
-		"SELECT COUNT(*) FROM {$table_name}"
-	);
-
-	if ( $count > 0 ) {
-		return;
-	}
-
-
-	if ( ! defined( 'DMNA_DATABASE_FILE' ) ) {
-		return;
-	}
-
-
-	if ( ! file_exists( DMNA_DATABASE_FILE ) ) {
-		return;
-	}
-
-
-	$sql = file_get_contents( DMNA_DATABASE_FILE );
-
-
-	if ( false === $sql ) {
-		return;
-	}
-
-
-	$sql = str_replace(
-		'{table}',
-		$table_name,
-		$sql
-	);
-
-
-	$queries = preg_split(
-		'/;\s*(?:\r?\n|$)/',
-		$sql
-	);
-
-
-	foreach ( $queries as $query ) {
-
-		$query = trim( $query );
-
-		if ( empty( $query ) ) {
-			continue;
+		if ( ! defined( 'DMNA_DATABASE_DIR' ) ) {
+			return array();
 		}
 
-		$wpdb->query( $query );
+		return array(
+			'dmnapl_meditations_pl'  => DMNA_DATABASE_DIR . 'meditations_pl.sql',
+			'dmnapl_language'  => DMNA_DATABASE_DIR . 'language.sql',
+			
+		);
 	}
 }
 
-/**
- * Updates database data.
- *
- * @return void
- */
-function wpdi_update_database_data() {
+
+if ( ! function_exists( 'wpdi_import_database' ) ) {
+
+	function wpdi_import_database() {
 
 	global $wpdb;
 
-	$table_name = $wpdb->prefix . 'DMNAPL_meditations_pl';
+	$files = wpdi_get_database_files();
 
-	if ( ! defined( 'DMNA_DATABASE_FILE' ) ) {
+	if ( empty( $files ) ) {
+		error_log( 'DMNA: brak listy plików bazy' );
 		return;
 	}
 
-	if ( ! file_exists( DMNA_DATABASE_FILE ) ) {
-		return;
-	}
 
-	$sql = file_get_contents(
-		DMNA_DATABASE_FILE
-	);
+	foreach ( $files as $table => $file ) {
 
-	if ( false === $sql ) {
-		return;
-	}
+		error_log( 'DMNA: sprawdzam plik: ' . $file );
 
-	$sql = str_replace(
-		'{table}',
-		$table_name,
-		$sql
-	);
 
-	// usuwamy stare rekordy
-	$wpdb->query(
-		"TRUNCATE TABLE {$table_name}"
-	);
-
-	$queries = preg_split(
-		'/;\s*(?:\r?\n|$)/',
-		$sql
-	);
-
-	foreach ( $queries as $query ) {
-
-		$query = trim( $query );
-
-		if ( empty( $query ) ) {
+		if ( ! file_exists( $file ) ) {
+			error_log( 'DMNA: brak pliku: ' . $file );
 			continue;
 		}
 
-		$wpdb->query( $query );
+
+		$table_name = $wpdb->prefix . $table;
+
+
+		error_log( 'DMNA: tabela: ' . $table_name );
+
+
+		$count = (int) $wpdb->get_var(
+			"SELECT COUNT(*) FROM {$table_name}"
+		);
+
+
+		error_log( 'DMNA: rekordow: ' . $count );
+
+
+		if ( $count > 0 ) {
+			error_log( 'DMNA: pomijam, dane juz istnieja' );
+			continue;
+		}
+
+
+		$sql = file_get_contents( $file );
+
+
+		if ( false === $sql ) {
+			error_log( 'DMNA: nie mozna odczytac pliku' );
+			continue;
+		}
+
+
+		$sql = str_replace(
+			'{table}',
+			$table_name,
+			$sql
+		);
+
+
+		$queries = preg_split(
+			'/;\s*(?:\r?\n|$)/',
+			$sql
+		);
+
+
+		foreach ( $queries as $query ) {
+
+			$query = trim( $query );
+
+
+			if ( empty( $query ) ) {
+				continue;
+			}
+
+
+			$result = $wpdb->query( $query );
+
+
+			if ( false === $result ) {
+				error_log(
+					'DMNA SQL ERROR: ' . $wpdb->last_error
+				);
+			}
+		}
+
+		error_log( 'DMNA: import zakonczony dla ' . $table_name );
 	}
+}
 }

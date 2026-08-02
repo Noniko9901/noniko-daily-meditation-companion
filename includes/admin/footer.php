@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<p>
 		<a href="https://github.com/Noniko9901/noniko-daily-meditation-companion" target="_blank" rel="noopener noreferrer">
-			<?php esc_html_e( 'GitHub', 'dmna' ); ?><br>
+			<?php esc_html_e( 'GitHub', 'dmna' ); ?>
 		</a>
 
 		&bull;

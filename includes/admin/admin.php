@@ -1,7 +1,9 @@
 <?php
+
 if (!defined('ABSPATH')) {
     exit;
 }
+
 
 function dm_admin_menu() {
 
@@ -20,89 +22,206 @@ function dm_admin_menu() {
 add_action('admin_menu', 'dm_admin_menu');
 
 
+
 function dm_dashboard_page() {
+
+    global $wpdb;
+
+
+    $language_table = $wpdb->prefix . 'dmnapl_language';
+
+
+
+    // Pobieramy wszystkie języki z bazy
+
+    $languages = $wpdb->get_results(
+        "SELECT * FROM {$language_table} ORDER BY id ASC"
+    );
+
+
+
+    // Jeżeli wybrano zakładkę
+
+    $active_tab = isset($_GET['tab'])
+        ? sanitize_text_field($_GET['tab'])
+        : '';
+
+
+
+    // Jeżeli nie wybrano żadnej zakładki,
+    // ustawiamy automatycznie język z ID = 1
+
+    if (empty($active_tab)) {
+
+        $active_tab = $wpdb->get_var(
+            "SELECT jezyk FROM {$language_table} WHERE id = 1 LIMIT 1"
+        );
+
+    }
+
+
+
+    // Pobieramy aktywny język
+
+    $lang = $wpdb->get_row(
+        $wpdb->prepare(
+            "SELECT * FROM {$language_table} WHERE jezyk=%s LIMIT 1",
+            $active_tab
+        )
+    );
+
+
     ?>
+
+
     <div class="wrap">
 
-        <h1>Daily Meditation NA - Polish</h1>
 
-        <h1>Informacje</h1>
+        <h1>
+            Noniko Daily Meditation Companion
+        </h1>
+
+
+
+        <h2 class="nav-tab-wrapper">
+
+
+            <?php foreach ($languages as $language) : ?>
+
+
+                <a href="?page=daily-meditation&tab=<?php echo esc_attr($language->jezyk); ?>"
+                   class="nav-tab <?php echo ($active_tab == $language->jezyk) ? 'nav-tab-active' : ''; ?>">
+
+
+                    <?php echo esc_html(strtoupper($language->jezyk)); ?>
+
+
+                </a>
+
+
+            <?php endforeach; ?>
+
+
+        </h2>
+
+
+
+
+
+        <?php if ($lang) : ?>
+
+
+  
+
+    <hr>
+
+
+    <h2>
+        <?php echo esc_html($lang->info_title); ?>
+    </h2>
+
+
+    <p>
+        <?php echo wp_kses_post($lang->info); ?>
+    </p>
+
+
+
+    <hr>
+
+
+
+    <h2>
+        <?php echo esc_html($lang->configuration_title); ?>
+    </h2>
+
+
+    <p>
+        <?php echo nl2br(
+            esc_html($lang->configuration)
+        ); ?>
+    </p>
+
+
+
+    <hr>
+
+
+
+    <h2>
+        <?php echo esc_html($lang->shortcode_title); ?>
+    </h2>
+
+
+    <input
+        type="text"
+        class="regular-text code"
+        readonly
+        value="<?php echo esc_attr($lang->shortcode_meditation); ?>"
+        onclick="this.select();"
+    >
+
+
+
+    <hr>
+
+
+
+    <h2>
+        <?php echo esc_html($lang->description_title); ?>
+    </h2>
+
+
+    <p>
+        <?php echo wp_kses_post($lang->description); ?>
+    </p>
+
+
+
+    <hr>
+
+
+
+    <h2>
+        <?php echo esc_html($lang->support_title); ?>
+    </h2>
+
+
+    <p>
+        <?php echo wp_kses_post($lang->support); ?>
+    </p>
+
+
+
+    <hr>
+
+
+
+
+<?php else : ?>
+
+
+    <div class="notice notice-error">
 
         <p>
-            Ta wtyczka wyświetla codzienną medytację
-            z programu Narcotics Anonymous w języku polskim
-            oraz Modlitwę o Pogodę Ducha.
-        </p>
-
-        <hr><br>
-
-        <h1>Konfiguracja</h1>
-
-        <ol>
-            <li>Zainstaluj i aktywuj wtyczkę.</li>
-            <li>Podczas aktywacji zostanie automatycznie utworzona baza danych z medytacjami.</li>
-            <li>Wstaw shortcode na dowolnej stronie lub we wpisie.</li>
-        </ol>
-
-
-        <h2>Shortcode - medytacja</h2>
-
-        <p>Użyj poniższego shortcode:</p>
-
-        <input
-            type="text"
-            class="regular-text code"
-            readonly
-            value="[dmnapl_meditations_pl]"
-            onclick="this.select();">
-
-        <p>lub</p>
-
-        <pre><code>[dmnapl_meditations_pl]</code></pre>
-
-
-        <h2>Shortcode - Modlitwa o Pogodę Ducha</h2>
-
-        <p>Użyj poniższego shortcode:</p>
-
-        <input
-            type="text"
-            class="regular-text code"
-            readonly
-            value="[dmnapl_prayer_pl]"
-            onclick="this.select();">
-
-        <p>lub</p>
-
-        <pre><code>[dmnapl_prayer_pl]</code></pre>
-
-
-        <hr>
-
-        <h2>Opis</h2>
-
-        <p>
-            Wtyczka automatycznie wyświetla medytację odpowiadającą
-            bieżącej dacie. Dane pobierane są z tabeli
-            <code>DMNAPL_meditations_pl</code>.
-        </p>
-
-        <p>
-            Dodatkowo dostępna jest Modlitwa o Pogodę Ducha,
-            którą można wyświetlić na stronie za pomocą osobnego shortcode.
-        </p>
-
-        <hr>
-
-        <h2>Wsparcie</h2>
-
-        <p>
-            Jeśli napotkasz problem z działaniem wtyczki,
-            sprawdź czy wtyczka została poprawnie aktywowana
-            oraz czy tabela bazy danych została utworzona.
+            Brak danych językowych.
         </p>
 
     </div>
+
+
+<?php endif; ?>
+
+
+
+
+
+    </div>
+
+
+
     <?php
-     require DMNA_PLUGIN_DIR . 'includes/admin/footer.php';
+
+    require DMNA_PLUGIN_DIR . 'includes/admin/footer.php';
+
 }
