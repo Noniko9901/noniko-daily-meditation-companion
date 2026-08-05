@@ -3,7 +3,7 @@
  * Plugin Name: Noniko Daily Meditation Companion
  * Plugin URI: https://github.com/noniko9901/noniko-daily-meditation-companion
  * Description: Displays the daily Narcotics Anonymous meditation with multilingual support.
- * Version: 1.0.7
+ * Version: 1.0.8
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Author: Noniko9901
