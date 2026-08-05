@@ -5,11 +5,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Creates or updates the plugin database table.
+ * Creates or updates plugin database tables.
  *
  * @return void
  */
-function dmna_create_database_table() {
+function ndmc_create_database_table() {
 
 	global $wpdb;
 
@@ -17,13 +17,12 @@ function dmna_create_database_table() {
 
 	$charset_collate = $wpdb->get_charset_collate();
 
-	$meditations_tabl_pl = $wpdb->prefix . 'dmnapl_meditations_pl';
-	$language = $wpdb->prefix . 'dmnapl_language';
-	
+	$meditations_table_pl = $wpdb->prefix . 'ndmc_meditations_pl';
+	$language_table       = $wpdb->prefix . 'ndmc_language';
 
 	$sql = "
 
-CREATE TABLE {$meditations_tabl_pl} (
+CREATE TABLE {$meditations_table_pl} (
 	id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 	date varchar(5) NOT NULL,
 	med_day varchar(100) DEFAULT NULL,
@@ -36,33 +35,32 @@ CREATE TABLE {$meditations_tabl_pl} (
 ) {$charset_collate};
 
 
+CREATE TABLE {$language_table} (
+	id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+	jezyk varchar(10) NOT NULL,
+	title varchar(255) NOT NULL,
 
-CREATE TABLE {$language} (
-    id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-    jezyk varchar(10) NOT NULL,
-    title varchar(255) NOT NULL,
+	info_title varchar(255) DEFAULT NULL,
+	info longtext DEFAULT NULL,
 
-    info_title varchar(255) DEFAULT NULL,
-    info longtext DEFAULT NULL,
+	configuration_title varchar(255) DEFAULT NULL,
+	configuration longtext DEFAULT NULL,
 
-    configuration_title varchar(255) DEFAULT NULL,
-    configuration longtext DEFAULT NULL,
+	shortcode_title varchar(255) DEFAULT NULL,
+	shortcode_meditation varchar(255) DEFAULT NULL,
 
-    shortcode_title varchar(255) DEFAULT NULL,
-    shortcode_meditation varchar(255) DEFAULT NULL,
+	description_title varchar(255) DEFAULT NULL,
+	description longtext DEFAULT NULL,
 
-    description_title varchar(255) DEFAULT NULL,
-    description longtext DEFAULT NULL,
+	support_title varchar(255) DEFAULT NULL,
+	support longtext DEFAULT NULL,
 
-    support_title varchar(255) DEFAULT NULL,
-    support longtext DEFAULT NULL,
+	error longtext DEFAULT NULL,
+	just_for_day longtext DEFAULT NULL,
 
-    error longtext DEFAULT NULL,
-    just_for_day longtext DEFAULT NULL,
-
-    PRIMARY KEY (id),
-    KEY jezyk (jezyk)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+	PRIMARY KEY (id),
+	KEY jezyk (jezyk)
+) {$charset_collate};
 
 ";
 

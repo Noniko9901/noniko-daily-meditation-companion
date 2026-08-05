@@ -1,20 +1,41 @@
 <?php
 /**
- * Uninstall Daily Meditation NA - Polish.
+ * Uninstall Noniko Daily Meditation Companion.
  *
- * Removes plugin database table and options.
+ * Removes plugin database tables and options.
  *
- * @package DailyMeditationNAPolish
+ * @package NDMC
  */
 
 defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
 
+
 global $wpdb;
 
-// Remove plugin table.
-$table_name = $wpdb->prefix . 'dmna_meditations_pl';
 
-$wpdb->query( "DROP TABLE IF EXISTS `{$table_name}`" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.PreparedSQL.NotPrepared
+/**
+ * Remove meditation table.
+ */
+$meditations_table = $wpdb->prefix . 'ndmc_meditations_pl';
 
-// Remove plugin options.
-delete_option( 'dmna_db_version' );
+$wpdb->query(
+	"DROP TABLE IF EXISTS {$meditations_table}"
+); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.PreparedSQL.NotPrepared
+
+
+
+/**
+ * Remove language table.
+ */
+$language_table = $wpdb->prefix . 'ndmc_language';
+
+$wpdb->query(
+	"DROP TABLE IF EXISTS {$language_table}"
+); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.PreparedSQL.NotPrepared
+
+
+
+/**
+ * Remove plugin options.
+ */
+delete_option( 'ndmc_db_version' );

@@ -1,8 +1,8 @@
 <?php
 /**
- * Admin footer.
+ * Frontend footer.
  *
- * @package DMNA
+ * @package NDMC
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,24 +10,40 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<div class="dm-footer">
+<div class="ndmc-footer">
 
 	<p>
-		<?php esc_html_e( 'Noniko Daily Meditation Companion | 🇵🇱 ', 'dmna' ); ?>
+		<strong>
+			<?php esc_html_e( 'Noniko Daily Meditation Companion  | 🇵🇱 ', 'noniko-daily-meditation-companion' ); ?>
+		</strong>
 	</p>
 
 	<p>
-		<a href="https://github.com/Noniko9901/noniko-daily-meditation-companion" target="_blank" rel="noopener noreferrer">
-			<?php esc_html_e( 'GitHub', 'dmna' ); ?>
+		<?php
+		echo esc_html(
+			sprintf(
+				/* translators: %s: plugin version */
+				__( 'Version: %s', 'noniko-daily-meditation-companion' ),
+				NDMC_VERSION
+			)
+		);
+		?>
+	</p>
+
+
+	<p>
+		<a 
+			href="https://github.com/Noniko9901/noniko-daily-meditation-companion"
+			target="_blank"
+			rel="noopener noreferrer">
+			<?php esc_html_e( 'GitHub', 'noniko-daily-meditation-companion' ); ?>
 		</a>
 
-		&bull;
+		&nbsp;•&nbsp;
 
 		<a href="mailto:noniko9901@gmail.com">
-			<?php esc_html_e( 'Contact', 'dmna' ); ?>
+			<?php esc_html_e( 'Contact', 'noniko-daily-meditation-companion' ); ?>
 		</a>
 	</p>
-
-	
 
 </div>

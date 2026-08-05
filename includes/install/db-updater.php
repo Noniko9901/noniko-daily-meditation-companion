@@ -9,34 +9,34 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @return void
  */
-function dmna_update_database() {
+function ndmc_update_database() {
 
 	$current_version = get_option(
-		'dmna_db_version',
+		'ndmc_db_version',
 		'0'
 	);
 
 	if ( version_compare(
 		$current_version,
-		DMNA_DB_VERSION,
+		NDMC_DB_VERSION,
 		'>='
 	) ) {
 		return;
 	}
 
 	// Aktualizacja struktury.
-	dmna_create_database_table();
+	ndmc_create_database_table();
 
-    // Aktualizacja danych.
-     wpdi_import_database();;
+	// Aktualizacja danych.
+	ndmc_import_database();
 
 	update_option(
-		'dmna_db_version',
-		DMNA_DB_VERSION
+		'ndmc_db_version',
+		NDMC_DB_VERSION
 	);
 }
 
 add_action(
 	'admin_init',
-	'dmna_update_database'
+	'ndmc_update_database'
 );
